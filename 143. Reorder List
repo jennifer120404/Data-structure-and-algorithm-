@@ -1,0 +1,45 @@
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution(object):
+    def reorderList(self, head):
+        '''
+        linear time O(N)
+        have a slow (moving 1 node) and fast ( moving 2 node) 
+        to spilt the linkedlist by half 
+
+        reverse the second half 
+
+        set pointer for the beginning of the first half and end of the seconf half 
+
+        while loop while seoncd hald is iterate through:
+            change the  the order 
+
+        no need to return
+        
+        '''
+        slow,fast = head, head.next
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+        
+        
+        second_start = slow.next
+        slow.next = None
+        prev = None
+        while second_start:
+            temp = second_start.next
+            second_start.next = prev 
+            prev = second_start
+            second_start = temp 
+
+        second_start = prev 
+        p1, p2 = head, second_start
+        while p2:
+            temp1, temp2 = p1.next, p2.next
+            p1.next = p2
+            p2.next = temp1
+            p1 = temp1
+            p2 = temp2
