@@ -1,0 +1,24 @@
+class Solution(object):
+    def uniqueOccurrences(self, arr):
+        """
+        create a hash map 
+        loop throught and input the value  with their number of occurance 
+        
+        create a set to store all the number of occurance
+         
+        and check if length of the hashmap and the set is the same
+        """
+        hm = {}
+        for n in arr:
+            if n not in hm:
+                hm[n] = 1
+            else:
+                hm[n] = hm[n] +1
+        dic= set()
+        for n in hm:
+            dic.add(hm[n])
+        if len(dic)== len(hm):
+
+            return True
+        else:
+            return False
