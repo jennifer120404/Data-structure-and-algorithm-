@@ -1,0 +1,30 @@
+class Solution(object):
+    def merge(self, nums1, m, nums2, n):
+        """
+        get the last index 
+        merge them in reverse order 
+        while both list are not empty:
+            if the end element of num1 is bigger than the end element of num3
+            add nums1 element to the end of num1 
+        same as num2 
+        move the last index every time
+
+        if there is extra element in  nums 2
+        add them 
+
+        """
+
+        last = m +n -1
+
+        while m >0 and n >0:
+            if nums1[m-1]> nums2[n-1]:
+                nums1[last] = nums1[m-1]
+                m-=1
+            else:
+                nums1[last] = nums2[n-1]
+                n-= 1
+            last -= 1
+        
+        while n > 0:
+            nums1[last] = nums2[n-1]
+            n, last = n-1, last-1
