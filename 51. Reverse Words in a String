@@ -1,0 +1,35 @@
+class Solution(object):
+    def reverseWords(self, s):
+        """
+        create a place holder for word 
+        create a list for words 
+        loop throught the letter
+            if the letter is not space:
+                add letter to the word 
+            if it is space 
+                ifr the word is not empty 
+                    add the word to the list 
+                    reset the word 
+            add the last word 
+            havae a return varable 
+        add the words in the list to new words
+
+        """
+        word = ""
+        words = []
+		
+        for a in s:
+            if a != " ":
+                word += a
+            else:
+                if word != "":
+                    words.append(word)
+                    word = ""
+        if word != "":
+            words.append(word)
+        new_word = ""
+		
+        for w in words:
+            new_word = " " + w + new_word
+        return new_word[1:]
+       
