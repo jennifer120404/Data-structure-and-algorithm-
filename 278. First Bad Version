@@ -1,0 +1,33 @@
+ The isBadVersion API is already defined for you.
+# @param version, an integer
+# @return a bool
+# def isBadVersion(version):
+
+class Solution(object):
+    def firstBadVersion(self, n):
+        """
+        left pointer to 1
+        right pointer to n 
+
+        while right > left pointer:
+            find mid (need to use integar divsion //)
+            if isBadVersion(mid): (mean the bad versionnat on the left side )
+                right = mid-1
+                
+            else: (mean the bad versionnat on the right side )
+                left = mid+1
+
+
+        return left pointer 
+
+
+        """
+        left = 1 
+        right = n 
+        while right >= left: 
+            mid = left + (right - left) // 2
+            if isBadVersion(mid): 
+                right = mid - 1  
+            else:
+                left = mid + 1
+        return left
