@@ -1,0 +1,28 @@
+class Solution(object):
+    def mySqrt(self, x):
+        """
+        l = 0
+        r = x//2
+        while r>l:
+            mid = l +(l+r)//2
+            if mid *mid > x:
+                r = mid-1
+            else:
+                l = mind+1
+        if ((l*l)-x) > ((r*r)-x):
+            retutn r
+        else:
+            l
+        """
+        l = 0
+        r = x
+        while r >= l:
+            mid = l + (r - l) // 2
+            if mid * mid > x:
+                r = mid - 1
+            else:
+                l = mid + 1
+        if ((l * l) - x) > ((r * r) - x):
+            return r
+        else:
+            return l
