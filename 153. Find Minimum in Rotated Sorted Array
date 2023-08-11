@@ -1,0 +1,26 @@
+class Solution(object):
+    def findMin(self, nums):
+        '''
+        have a left represent first index
+        and right for the last index 
+
+        while right index > left index:
+            set middle 
+            if middle larger than right 
+                reset lef to middle +1 
+            else 
+                right set to middle 
+        return tyhe left number 
+        '''
+        left = 0
+        right = len(nums) - 1
+
+        while left < right:
+            mid = left + (right - left) / 2
+
+            if nums[mid] > nums[right]:
+                left = mid + 1 #minimum element lies in the second half of the search space.
+            else:
+                right = mid # minimum element lies in the first half of the search space
+
+        return nums[left] # return the min
