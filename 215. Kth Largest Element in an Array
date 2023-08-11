@@ -1,0 +1,25 @@
+class Solution(object):
+    def findKthLargest(self, nums, k):
+        """
+        create a heap 
+        loop the element in nums:
+            if the length of the heap is smaller that k
+                push element 
+            else mean the heap is equal to k 
+                if the number is larger than first element in heap 
+                    pop the element 
+                    push the new one 
+
+        return first element 
+        """
+        heap = []
+        
+        for num in nums:
+            if len(heap) < k:
+                heapq.heappush(heap, num)
+            else:
+                if num > heap[0]:
+                    heapq.heappop(heap)
+                    heapq.heappush(heap, num)
+        
+        return heap[0]
