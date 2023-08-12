@@ -1,0 +1,22 @@
+class Solution(object):
+    def countStudents(self, students, sandwiches):
+        """
+        while student and sandwich and top of the sandwich is in the student 
+            if the student want s the top
+                student pop
+                pop the sandwhich stack
+            else:
+                val = student.pop
+                students.append(val)
+
+        return len of student
+        """
+        while students and sandwiches and sandwiches[0] in students:
+                if students[0]==sandwiches[0]:
+                    students.pop(0)
+                    sandwiches.pop(0)
+                else:
+                    k = students.pop(0)
+                    students.append(k)
+                
+        return len(students)
