@@ -1,0 +1,21 @@
+class Solution(object):
+    def validateStackSequences(self, pushed, popped):
+        """
+        create a fake stack 
+        create a pointer to access the popped array 
+        loop through element in pushed 
+            append element to fake stack 
+            while the pointer is not out of bound and fake stack is not empyth and the last element and the popped index is the same:
+                fake stack pop and index move next 
+        return if the stack is empyth which mean all element are popped 
+
+        """
+        fake_stack = []
+        i =0
+        for n in pushed:
+            fake_stack.append(n)
+            while i < len(popped) and fake_stack and fake_stack[-1] == popped[i]:
+                fake_stack.pop()
+                i += 1
+    
+        return not fake_stack
