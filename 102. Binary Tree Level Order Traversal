@@ -1,0 +1,40 @@
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def levelOrder(self, root):
+        """
+        check if the root is empty 
+        introdoce double end queue and append the root 
+        create a result list 
+        while q not empyth:
+            create a level list 
+            for loop iterates over each node at the current level
+                add the value level list 
+                check ifthe lelment have children and add the children to the q 
+            append the levele list to result list 
+        return result list 
+
+        """
+        if not root:
+            return []
+        q = deque()
+        q.append(root)
+        res = []
+        while len(q):
+            lev = []
+            for i in range(len(q)):
+                el = q.popleft()
+                lev.append(el.val)
+                if el.left:
+                    q.append(el.left)
+                if el.right:
+                    q.append(el.right)
+            res.append(lev)      
+        return res
+        
+
+
