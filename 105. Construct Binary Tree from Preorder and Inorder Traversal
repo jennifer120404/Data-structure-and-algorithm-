@@ -1,0 +1,30 @@
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def buildTree(self, preorder, inorder):
+        """
+        pre order first on always the root 
+                 secong will be the starte of left sub tree 
+        in order the root is the spilt of left and right tree 
+                and the mid ot the right is the root of right sub tree 
+            
+
+        if the preorder or inorder is empyth: 
+            return nothing 
+        root value is the first element in preorder 
+        mid as the index of the root elemnt in inorder which spilt the life and right tree
+        builr the root left and rght using recursive 
+        return the root 
+        
+        """
+        if not preorder or not inorder:
+            return None
+        root  = TreeNode(preorder[0])
+        mid = inorder.index(preorder[0])
+        root.left = self.buildTree(preorder[1:mid+1], inorder[:mid])
+        root.right= self.buildTree(preorder[mid+1:], inorder[mid+1:])
+        return root
