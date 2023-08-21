@@ -1,0 +1,24 @@
+class Solution(object):
+    def inorderTraversal(self, root):
+        """
+        res set to a list 
+        if root is empty:
+            return []
+        if root on the left is not empty:
+            set to recusrvise on left
+        if root on the right is not empty:
+            set to recusrvise on right 
+        res + left  + root and +right 
+        return res
+        """
+        res = []
+        left = []
+        right = []
+        if not root:
+            return []
+        if root.left:
+            left = self.inorderTraversal(root.left)
+        if root.right:
+            right = self.inorderTraversal(root.right)
+        res = left + [root.val] + right
+        return res
