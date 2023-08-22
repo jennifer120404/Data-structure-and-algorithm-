@@ -1,0 +1,39 @@
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def binaryTreePaths(self, root):
+        """
+        if root doesnt exist:
+            return empty list 
+        
+        define dfs function that take in the node, a path and the res list 
+            if left and right doesnt exist :
+                the res list append the path string and add the node val
+            if the node have left 
+                go in to another rounf of recustive on the left side 
+             if the node have right 
+                go in to another rounf of recustive on the right side 
+    
+        declare result list 
+        and call dfs with root and result 
+        return result 
+        """
+        if not root:
+            return []
+        
+        def dfs(node, path, res):
+            if not node.left and not node.right:
+                res.append(path + str(node.val))
+                return
+            if node.left:
+                dfs(node.left, path + str(node.val) + "->", res)
+            if node.right:
+                dfs(node.right, path + str(node.val) + "->", res)
+        
+        res = []
+        dfs(root, "", res)
+        return res
