@@ -1,0 +1,38 @@
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def isBalanced(self, root):
+        """
+        have a helper function to check if the tree if balance taht take in one node 
+            if the node doesnt exist (base case)
+                return 0 and True 
+        
+            left depth and left balance = helper function with the left node 
+            right depth and right balance = helper function with the rigth node 
+
+            depth = 1+ max(left depth and right depth )
+            balanced var = if left balance and right balance and if the depth differeence is less than one
+
+            reutn depth and balanced
+        
+        return the second one of the result 
+
+        """
+
+        def check_balance(node):
+            if not node:
+                return 0, True
+
+            left_depth, left_balanced = check_balance(node.left)
+            right_depth, right_balanced = check_balance(node.right)
+
+            depth = 1 + max(left_depth, right_depth)
+            balanced = left_balanced and right_balanced and abs(left_depth - right_depth) <= 1
+
+            return depth, balanced
+
+        return check_balance(root)[1]
