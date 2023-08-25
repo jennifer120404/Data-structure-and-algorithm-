@@ -1,0 +1,18 @@
+class Solution(object):
+    def transpose(self, matrix):
+        """
+        save the length of rows and cols for the olf matrix 
+        then create a new matrix where the nums of col and rows are switch 
+        loop thought and switch the value 
+        return the new matrix
+        """
+        numRows = len(matrix)
+        numCols = len(matrix[0])
+        
+        new_m = [[0] * numRows for _ in range(numCols)]
+
+        for r in range(numCols):  
+            for c in range(numRows):  
+                new_m[r][c] = matrix[c][r]
+
+        return new_m
