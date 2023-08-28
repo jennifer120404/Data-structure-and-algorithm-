@@ -1,0 +1,57 @@
+class TrieNode():
+    def __init__(self):
+        self.children = {} # dictionary for storing the children
+        self.is_word = False # the end of the word 
+
+class WordDictionary(object):
+
+    def __init__(self):
+        self.root = TrieNode() # Initializing root as an instance of TrieNode        
+
+    def addWord(self, word):
+        '''
+        have a curr pointer for the root 
+        loop through the char in word 
+        if the lette is not in curr children 
+        create another pair in curr's children with the letter and a new node 
+        move the curr to children 
+        make the current node the end of word 
+        '''
+        curr = self.root 
+        for letter in word:
+            if letter not in curr.children:
+                curr.children[letter] = TrieNode()
+            curr = curr.children[letter]
+        curr.is_word = True
+
+    def search(self, word):
+        '''
+        use recursive method
+        '''
+        return self._search_helper(word, 0, self.root)
+
+    def _search_helper(self, word, index, node):
+        '''
+        chack if the index is equal to the len of word
+        have var to save the index charater 
+        if the char is .
+            loop all charater in the children val:
+                word are in the children 
+                return True else False
+        if char is not in children 
+        return False 
+        else return True 
+        '''
+        if index == len(word):
+            return node.is_word
+        char = word[index]
+
+        if char == '.':
+            for child in node.children.values():
+                if self._search_helper(word, index + 1, child):
+                    return True
+            return False
+        elif char not in node.children:
+            return False
+        else:
+            return self._search_helper(word, index + 1, node.children[char])
