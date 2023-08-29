@@ -1,0 +1,48 @@
+"""
+# Definition for a Node.
+class Node(object):
+    def __init__(self, val = 0, neighbors = None):
+        self.val = val
+        self.neighbors = neighbors if neighbors is not None else []
+"""
+
+class Solution(object):
+    def cloneGraph(self, node) :
+        '''
+        if node doesnt exist 
+        return none 
+        create a dictyionary to track all node 
+
+        create a function that take in one node 
+            create a copy of the current code 
+            add the node to the map
+            then loop through the vertex 
+                if the vertex node already exist
+                add the node to the new node's neighbors 
+            else:
+                the add the recurivses solve function to the new neighbors so it creat a new node to be added  
+
+            return the new node  
+        return solve(node )
+
+
+        '''
+        clones = {}
+        
+        def solve ( node ) :
+            new_ = Node(node.val)    # create a copy of current node
+            clones[node] = new_      # add current and new node in hash map
+            
+            for vertex in node.neighbors :
+                if vertex in clones :     # if current node's neighbor is already created
+                    new_.neighbors.append(clones[vertex])
+                    
+                else :                      # else call for solve to create another copy of vertex
+                    new_.neighbors.append(solve(vertex))
+                    
+            return new_
+        
+        if not node :
+            return None
+        
+        return solve( node )
