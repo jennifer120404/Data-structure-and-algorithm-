@@ -1,0 +1,31 @@
+class Solution(object):
+    def combinationSum(self, candidates, target):
+        """
+        have a res list for result 
+
+        defne a duncrion for depth first search take in index , current combination and total
+            have one base cause where total == targeert 
+                save the result and return 
+            if i is equal or larger than the length of candidates return 
+
+            make a recuvisve that include the the ith canadiates 
+            make another recuvisve that doesn't include the the ith canadiates 
+            
+
+
+        """
+        res = []
+        def dfs(i, cur, total):
+            if total == target:
+                res.append(list(cur))
+                return
+            if i >= len(candidates ) or  total > target: 
+                return 
+            
+            cur.append(candidates[i])
+            dfs(i, cur, total + candidates[i])
+
+            cur.pop()
+            dfs(i +1,cur,total)
+        dfs(0,[],0)
+        return res
