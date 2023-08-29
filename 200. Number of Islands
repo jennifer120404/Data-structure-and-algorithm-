@@ -1,0 +1,42 @@
+class Solution(object):
+    def numIslands(self, grid):
+        '''
+        if grid doesnt exist:
+            return 0
+
+        create a dfs function with input of grid and col and row 
+            if col amnd row are out of bound  and element is water 
+                return
+            mark the current elemetn as visited
+            do dfs in four direction
+
+            save count of the island
+
+            loop though col and rows 
+                if the element is land 
+                    go dfs 
+                    count increase one
+
+            return count 
+        '''
+        if not grid:
+            return 0
+
+        def dfs(grid, i, j):
+            if i < 0 or j < 0 or i >= len(grid) or j >= len(grid[0]) or grid[i][j] != '1':
+                return
+            grid[i][j] = '#'  # mark as visited
+            dfs(grid, i + 1, j)
+            dfs(grid, i - 1, j)
+            dfs(grid, i, j + 1)
+            dfs(grid, i, j - 1)
+
+        count = 0
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if grid[i][j] == '1':
+                    dfs(grid, i, j)
+                    count += 1
+
+        return count
+       
