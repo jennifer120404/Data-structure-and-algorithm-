@@ -1,0 +1,44 @@
+class Solution(object):
+    def canFinish(self, numCourses, prerequisites):
+        """
+        create a map that store for course with their prerequisite 
+        loop prerequisites to the course and pre requisites 
+        create a visit set for dfs  
+        create dfs function that take in the current course 
+            if the course in the visitset
+                return false
+            if the course have no pre
+                return true 
+            then add the course to visitSet 
+            loop the course's prerequisite and return the result 
+            after it loop then remove course of the visit set 
+            and set the course prerequiste as zero to avoid more runtime since we know it can be taken and return true 
+            loop though numCourses:
+            and if not dfs(course):
+                return False
+            return True
+
+        """ 
+        preM = {i:[] for i in range(numCourses)}
+        for c , p in prerequisites:
+            preM[c].append(p)
+
+        visitSet = set()
+        def dfs(c):
+            if c in visitSet:#check is it is a loop 
+                return False
+            if preM[c] ==[]:
+                return True
+            visitSet.add(c)
+            for p in preM[c]:
+                if not dfs(p):
+                    return False
+            visitSet.remove(c)
+            preM[c]=[]
+            return True
+        for c in range(numCourses):
+            if not dfs(c):
+                return False 
+        return True 
+
+
