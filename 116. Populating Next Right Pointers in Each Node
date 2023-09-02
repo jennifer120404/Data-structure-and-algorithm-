@@ -1,0 +1,56 @@
+"""
+# Definition for a Node.
+class Node(object):
+    def __init__(self, val=0, left=None, right=None, next=None):
+        self.val = val
+        self.left = left
+        self.right = right
+        self.next = next
+"""
+
+class Solution(object):
+    def connect(self, root):
+        """
+        Breath depth dearch 
+        if root doesnt exist:
+                return root 
+        create a queue for a list 
+        then append root to queue
+        while queue:
+            create a dq 
+            save the length of queue
+            loop the index of length:
+                set the curr pop the first element
+                dq.append the curr element 
+                if curr left exist:
+                    append left to the queue 
+                if right exit:
+                    append right to the queue 
+                while the dp is not empty 
+                    save popleft 
+                    popleft next = dp first element 
+                do the last case and set next none
+        return root 
+
+        """
+        if not root:
+            return root
+        queue = []
+        queue.append(root)
+        while queue:
+            dq = collections.deque()
+            length = len(queue)
+            for i in range(length):
+                curr = queue.pop(0)
+                dq.append(curr)
+                if curr.left:
+                    queue.append(curr.left)
+                if curr.right:
+                    queue.append(curr.right)
+            while len(dq) > 1:
+                popped = dq.popleft()
+                popped.next = dq[0]
+            popped = dq.popleft()
+            popped.next = None
+        return root
+                
