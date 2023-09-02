@@ -1,0 +1,19 @@
+class Solution(object):
+    def topKFrequent(self, nums, k):
+        '''
+        use counter fucntion that return a dictionary where the keys are the unique elements and the values are their counts
+        sorts the dictionary items based on their values in descending order.   use lambda function lambda x:x[1] to sort based on the count
+        return the list 
+        '''
+        d = Counter(nums) # create dictionary based on the count of the element 
+        d1 = sorted(d.items(), key = lambda x:x[1], reverse = True)
+
+        count =0
+        res= [] 
+        for i, v in d1:
+            if count == k: 
+                return res
+            else:
+                res.append(i)
+                count  += 1
+        return res
