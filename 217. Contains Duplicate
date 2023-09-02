@@ -1,0 +1,18 @@
+class Solution(object):
+    def containsDuplicate(self, nums):
+        '''
+        create a set to keep track of all of the number 
+        loop all the number in n 
+            if n is in the set 
+                return true 
+            else 
+                add the number in set 
+        return False 
+        '''
+        set1 = set()
+        for n in nums:
+            if n in set1:
+                return True
+            else:
+                set1.add(n)
+        return False
