@@ -1,0 +1,27 @@
+class Solution(object):
+    def canConstruct(self, ransomNote, magazine):
+        """
+        create two dictionary 
+        for n in ransomNote:
+            dic1[n] = 1+ fic1.get(n, 0)
+        for n in magazine: 
+            dic1[n] = 1+ fic1.get(n, 0)
+        Loop dict 1 key and value
+            if find dic2 with the key and it have enought value 
+                return false
+        return true 
+        """
+        dic1 = {}
+        dic2 = {}
+        
+        for n in ransomNote:
+            dic1[n] = 1 + dic1.get(n, 0)
+
+        for n in magazine:
+            dic2[n] = 1 + dic2.get(n, 0)
+        
+        for key, value in dic1.items():
+            if dic2.get(key, 0) < value:
+                return False
+        
+        return True
