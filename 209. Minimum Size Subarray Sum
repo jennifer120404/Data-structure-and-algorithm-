@@ -1,0 +1,37 @@
+class Solution(object):
+    def minSubArrayLen(self, target, nums):
+        """
+        save the length pf nums 
+        have pointer for the start and the end of nums 
+        have total and minlen to save the sums of nums
+        while the end pointer is less then the length of nums 
+            add the end pointer to the total 
+            and increase the end 
+            while total is not equal or larger than target keep adding end pounter 
+            while the total is eual and larger than total 
+                save the min length and start srinking 
+                so mius total off start 
+                and move start pointer 
+            if the min length is still float inf
+                return 0 
+            else return minlen
+        
+        """
+        n = len(nums)
+        start = 0
+        end = 0
+        total = 0
+        min_len = float('inf')
+        
+        while end < n:
+            total += nums[end]
+            end += 1
+            while total >= target:
+                min_len = min(min_len, end - start)
+                total -= nums[start]
+                start += 1
+        if min_len == float('inf'):
+            return 0
+        
+        return min_len
+
