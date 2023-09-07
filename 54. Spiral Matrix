@@ -1,0 +1,58 @@
+class Solution(object):
+    def spiralOrder(self, matrix):
+        """
+        if the matrix doesnt exist
+        return rmpty 
+
+        set result list
+        set the left right top and bottom boundary var
+
+        while right is larger than left and bottom larger than top:
+            loop from left to right and add result 
+            increse top 
+
+            add top to bottom to result 
+            increase right 
+
+            if bottom larger than top :
+                appenmd from rioght to left and append to resulr 
+                bottom decrese 
+
+            if right larger than l:
+                go from bottom to top and append to result:
+                left increse 
+
+            return result 
+        """
+        if not matrix:
+            return []
+
+        res = []
+        l, r = 0, len(matrix[0])
+        t, b = 0, len(matrix)
+
+        while l < r and t < b:
+            for i in range(l, r):
+                res.append(matrix[t][i])
+            t += 1
+
+            for i in range(t, b):
+                res.append(matrix[i][r-1])
+            r -= 1
+
+            if t < b:
+                for i in range(r - 1, l - 1, -1):
+                    res.append(matrix[b-1][i])
+                b -= 1
+
+            if l < r:
+                for i in range(b - 1, t - 1, -1):
+                    res.append(matrix[i][l])
+                l += 1
+
+        return res
+
+
+
+
+
