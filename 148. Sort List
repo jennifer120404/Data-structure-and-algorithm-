@@ -1,0 +1,38 @@
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+import heapq
+class Solution(object):
+    def sortList(self, head):
+        """
+        loop though the linkedlist and insert them to minheap 
+        rebuild the linkedlist 
+        havea fake head 
+        prev = None
+        while min heap is not empyth:
+            curr = ListNode(the min heao pop)
+            if head is empty:
+                head = curr 
+            else :
+                prev.next = curr 
+            prev = curr 
+                
+        """
+        p = head 
+        heap =[]
+        while p:
+            heap.append(p.val)
+            p =p.next
+        heapq.heapify(heap)
+        new_head = None
+        prev = None
+        while heap:
+            curr = ListNode(heapq.heappop(heap))
+            if not new_head:
+                new_head = curr
+            else:
+                prev.next = curr
+            prev = curr
+        return new_head 
