@@ -1,0 +1,50 @@
+class Solution(object):
+    '''
+    create three helper function gor row col and 3x3
+
+    fow row vaild
+    for every row put into the is unit vailf helper function and return true and false 
+
+    for col vaild:
+        for every col put into the is unit vailf helper function and return true and false 
+
+    for square vaild 
+        loop index 0 3 6 for col and row for the 3x3 box
+        put all the elemenmt in to a list 
+        put ther list to vaild unit
+
+
+    have a unit vaild functions:
+        Create s list that contain element that doesnt have empyth slot 
+        checks if the number of unique elements
+         is equal to the total number of elements
+
+    '''
+    def isValidSudoku(self, board):
+         return (self.is_row_valid(board) and
+            self.is_col_valid(board) and
+            self.is_square_valid(board))
+
+    def is_row_valid(self, board):
+        for row in board:
+            if not self.is_unit_valid(row):
+                return False
+        return True
+
+    def is_col_valid(self, board):
+        for col in zip(*board):
+            if not self.is_unit_valid(col):
+                return False
+        return True
+        
+    def is_square_valid(self, board):
+        for i in (0, 3, 6):
+            for j in (0, 3, 6):
+                square = [board[x][y] for x in range(i, i + 3) for y in range(j, j + 3)]
+                if not self.is_unit_valid(square):
+                    return False
+        return True
+        
+    def is_unit_valid(self, unit):
+        unit = [i for i in unit if i != '.']
+        return len(set(unit)) == len(unit)
