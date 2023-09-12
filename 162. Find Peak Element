@@ -1,0 +1,29 @@
+class Solution(object):
+    def findPeakElement(self, nums):
+        '''
+        set left and right pointer 
+        while right larger than left
+            middle = l +r /2
+            if the middle value is learger than left and right it return the middle as peak 
+            if right is larger that the middle 
+            then move the left pointer to mid +1
+            else 
+            the right pointer move to middle -1 
+
+        return left if the left value is larger than right else right 
+        '''
+        left = 0
+        right = len(nums)-1
+        
+        while left < right-1:
+            mid = (left+right)/2
+            if nums[mid] > nums[mid+1] and nums[mid] > nums[mid-1]:
+                return mid
+                
+            if nums[mid] < nums[mid+1]:
+                left = mid+1
+            else:
+                right = mid-1
+                
+        return left if nums[left] >= nums[right] else right
+            
