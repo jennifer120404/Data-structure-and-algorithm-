@@ -1,0 +1,25 @@
+class Solution(object):
+    def rob(self, nums):
+        """
+        save the lengh
+        Create a list with the length of length +1 and set to 0 
+        if there is no house or only one return the base cases
+        set dp[1]=nums[0]
+        rob the first houes 
+        If you have 2 houses, rob the one with more money.
+        while the index is not out of bound and start with 3:
+            rob this one or the next one 
+        return the max 
+        """
+        n=len(nums)
+        dp=[0] * (n+1)
+        if n==0:
+            return 0
+        if n==1:
+            return nums[0]
+        dp[1]=nums[0]
+        dp[2]=max(nums[0],nums[1])
+        for i in range(3,n+1):
+            dp[i]=max(dp[i-1],dp[i-2]+nums[i-1])
+        return dp[n]
+
