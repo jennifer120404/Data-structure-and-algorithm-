@@ -1,0 +1,43 @@
+
+
+import heapq
+class Solution(object):
+    def kSmallestPairs(self, nums1, nums2, k):
+        """
+        check if the lists are empty if yes 
+            return empyth list 
+        
+        have a min heap 
+        set the min heal with the possible smallest pairs by using indexs using the smallest index for k or num1 and pait eith first element of 0 for smallest pairs and push it use the sum index index
+
+        result list 
+
+        while the minheap and when k is not zero:
+            pop minheap
+            push the index in to theresult list
+
+            add the next one pair i to min heapn
+
+            decrease k by 1 
+        return result 
+
+        """
+        if not nums1 or not nums2:
+            return []
+
+        min_heap = []
+        for i in range(min(k, len(nums1))):
+
+            heapq.heappush(min_heap, (nums1[i] + nums2[0], i, 0))
+
+        result = []
+        while k > 0 and min_heap:
+            val, i, j = heapq.heappop(min_heap)
+            result.append([nums1[i], nums2[j]])
+
+            if j + 1 < len(nums2):
+                heapq.heappush(min_heap, (nums1[i] + nums2[j+1], i, j+1))
+
+            k -= 1
+
+        return result
