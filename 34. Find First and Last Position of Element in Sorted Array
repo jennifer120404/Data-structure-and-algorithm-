@@ -1,0 +1,41 @@
+class Solution(object):
+    def searchRange(self, nums, target):
+        """
+        if the list is empty return [-1,-1 ]
+
+        binary search to the element 
+        set left and right pointer 
+        while left of the left of pointer == target
+            left pointer mius one 
+        same with the right 
+
+
+        """
+
+        if not nums:
+            return [-1,-1]
+
+        l, r = 0, len(nums) - 1
+        point = -1
+        while l <= r:
+            mid = (l + r) // 2
+            if nums[mid] == target:
+                point = mid
+                break
+            elif nums[mid] > target:
+                r = mid - 1
+            else:
+                l = mid + 1
+
+        if point == -1:
+            return [-1, -1]
+
+        left, right = point, point
+        while left > 0 and nums[left - 1] == target:
+            left -= 1
+        while right < len(nums) - 1 and nums[right + 1] == target:
+            right += 1
+
+        return [left, right]
+
+
