@@ -1,0 +1,52 @@
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, x, next=None, random=None):
+        self.val = int(x)
+        self.next = next
+        self.random = random
+"""
+
+class Solution(object):
+    def copyRandomList(self, head):
+        """
+        base case if head doesnt exist return none 
+
+        have a dictionary that keep trak of index and node 
+
+        set curr to head 
+        while currL
+            add the key as curr and set val to new node with val 
+            set to next node 
+        
+        set curr agin to head 
+        while curr:
+
+            set curr to the next one 
+        
+        return the the head val in dict:
+            if curr have next val:
+                take curr node out of dict and set the next to what curr.next corrspod to in dictionary 
+                do the same for the random whear the orgainal list alrwayd pointing at the random node and you just need to point 
+
+            return head 
+        """
+        if not head:
+            return None
+
+        node_map = {} 
+
+        curr = head
+        while curr:
+            node_map[curr] = Node(curr.val)
+            curr = curr.next
+
+        curr = head
+        while curr:
+            if curr.next:
+                node_map[curr].next = node_map[curr.next]
+            if curr.random:
+                node_map[curr].random = node_map[curr.random]
+            curr = curr.next
+
+        return node_map[head]
