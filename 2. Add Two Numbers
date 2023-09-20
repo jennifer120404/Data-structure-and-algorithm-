@@ -1,0 +1,53 @@
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution(object):
+    def addTwoNumbers(self, l1, l2):
+        """
+        list that store all the node so can connect back 
+        pointer 1 to l1 
+        pointer 2 to l2 
+        next_add = 0
+        while pointer 1 and pointer two and there is add on
+            the sum is the add on 
+            if p1 exist:
+                add the val to the sum 
+                and move p1 
+                
+            if p2 existL 
+                add the val to the sum 
+                and move p2
+            create new node (sum%10)
+            add the node to the list 
+            nex add is // 10
+
+        add all the list tgt return head 
+        
+        """
+        Nodes = [] 
+        p1 = l1
+        p2 = l2
+        next_add = 0 
+
+        while p1 or p2 or next_add:
+            sum_nodes = next_add
+
+            if p1:
+                sum_nodes += p1.val
+                p1 = p1.next
+
+            if p2:
+                sum_nodes += p2.val
+                p2 = p2.next
+
+            new_node = ListNode(sum_nodes % 10)
+            Nodes.append(new_node)
+            next_add = sum_nodes // 10
+
+        for index in range(len(Nodes) - 1):
+            Nodes[index].next = Nodes[index + 1]
+        
+        return Nodes[0]
+        
