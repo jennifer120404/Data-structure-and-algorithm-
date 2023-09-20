@@ -1,0 +1,25 @@
+class Solution(object):
+    def subsets(self, nums):
+        """
+        create a result list for all the subsets
+        creat backtracking function taht take in starta nd subset:
+            add current sub set to result 
+            for loop for start to len(number):
+                subset add the letter 
+                backtrackj with i+1 , and the surrent subset 
+                pop the subset 
+        
+        return res 
+
+
+        """
+        def backtrack(start, subset):
+            res.append(subset[:])
+            for i in range(start, len(nums)):
+                subset.append(nums[i])
+                backtrack(i + 1, subset)
+                subset.pop()
+                
+        res = []
+        backtrack(0, [])
+        return res
