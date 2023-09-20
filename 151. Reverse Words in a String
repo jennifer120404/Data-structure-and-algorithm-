@@ -1,24 +1,35 @@
 class Solution(object):
-    def isSubsequence(self, s, t):
+    def reverseWords(self, s):
         """
-        method: two pointer 
-        set two pointers for the two string 
-        have a while loop to make sure the index dont go out of bound:
-            if the two pointer charter equal:
-                move the s pointer so we looking for next charter in t 
-            move the t pointer 
-        
-        if the s is empty than return true we found all charater 
-        else false        
+        result string = ""
+        last index = last index
+        first indes = last index 
+
+        while first index >=0
+            if the first index is sqace 
+                if the result is not empty:
+                    result + ' '
+                result string add the letter from findex to lat index with  .strip()
+                set the last index to the first index 
+            first index + 1 
+                
         """
-        i =0
-        j =0
-        while i < len(s) and j< len(t):
-            if s[i] == t[j]:
-                i += 1
-            j+=1
-        
-        if i == len(s):
-            return True 
-        else:
-            False
+        word = ""
+        words = []
+		
+		#making words list without space
+        for a in s:
+            if a != " ":
+                word += a
+            else:
+                if word != "":
+                    words.append(word)
+                    word = ""
+        if word != "":
+            words.append(word)
+        new_word = ""
+		
+		#reversing
+        for w in words:
+            new_word = " " + w + new_word
+        return new_word[1:]
