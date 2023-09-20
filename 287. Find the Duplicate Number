@@ -1,0 +1,15 @@
+class Solution(object):
+    def findDuplicate(self, nums):
+        """
+        have a set 
+        loop all the value in nums:
+            if it is in the set that ,ean duplicate and return n 
+            else add to the set
+        
+        """
+        set1 = set()
+        for n in nums:
+            if n in set1:
+                return n
+            else:
+                set1.add(n)
