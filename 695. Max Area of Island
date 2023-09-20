@@ -1,0 +1,35 @@
+class Solution(object):
+    def maxAreaOfIsland(self, grid):
+        """
+        largest  save the max area 
+        create a helper function that take in one block:
+            base case if the block is vaild 
+                marked the element so no extra recursive 
+                newmax = 1 + recusive to all four way 
+                max = max( largest, newmax )
+        
+        loop col and row 
+        if there is 1 
+            go in to recusive 
+        
+        retunr largest 
+            
+        """
+        
+        largest = 0 
+        rows = len(grid)
+        cols = len(grid[0])
+        
+        def capture(r, c):
+            if r < 0 or c < 0 or r >= rows or c >= cols or grid[r][c] != 1:
+                return 0
+
+            grid[r][c] = 2
+
+            return 1 + capture(r+1, c) + capture(r-1, c) + capture(r, c+1) + capture(r, c-1)
+        
+        for row in range(rows):
+            for col in range(cols):
+                if grid[row][col] == 1:
+                    largest = max(largest, capture(row, col))
+        return largest 
