@@ -1,0 +1,36 @@
+class Solution(object):
+    def validMountainArray(self, arr):
+        """
+     check if len(array is more than three 
+        if not return false 
+
+        left= 0 
+        right = len(arr)-1 
+
+        while loop that left+1 is larger than left and left should not be longer that the len(Arr)
+            increase the pointer 
+        
+        while loop that right < right +1  right doesnt smaller than 0 
+            decrezs the pointer 
+
+        if the left and right is the same pooiiunter then it is true selse false 
+        """
+        
+        if len(arr)< 3:
+            return False 
+
+        left = 0 
+        right = len(arr) -1 
+        
+        #while loop for the left side 
+        while left +1 < len(arr) and arr[left] < arr[left+1]:
+            left = left +1 
+        
+        # while loop for the right side
+        while  right > 1 and arr[right] <arr[right-1] :
+            right = right -1 
+        
+        if right == left and left != len(arr)-1 and right != 0:
+            return True 
+        else: 
+            return False 
