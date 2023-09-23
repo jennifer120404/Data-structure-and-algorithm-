@@ -1,0 +1,19 @@
+class Solution(object):
+    def strStr(self, haystack, needle):
+        '''
+        if needle is empty return 0
+
+        loop the the difference between the difference between haystack -needle:
+            (loop omnly possible index )
+            if the the word if needle:
+                then returnthat index 
+        
+        return -1 if noting is found 
+        '''
+      
+        if not needle:
+            return 0
+        for i in range(len(haystack) - len(needle) + 1):
+            if haystack[i:i+len(needle)] == needle:
+                return i  
+        return -1  
