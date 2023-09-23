@@ -1,0 +1,21 @@
+class Solution(object):
+    def hIndex(self, citations):
+        '''
+        sort the caitations reverse 
+        and set var for h_index 
+        loop indexa dn content of the citations
+        checking number of citations is greater than or equal to the position of the paper in the sorted 
+         if yes increase h-index by one 
+         else 
+         break the loop
+         return the h_index
+        '''
+        citations.sort(reverse=True)
+        h_index = 0
+        for i, c in enumerate(citations):
+            if c >= i + 1:
+                h_index = i + 1
+            else:
+                break
+        return h_index
+        
