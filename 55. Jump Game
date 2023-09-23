@@ -1,0 +1,16 @@
+class Solution(object):
+    def canJump(self, nums):
+        """
+        first set the goal as the len of the nums -1 which is the index of the element 
+        than loop the index backward:
+            if the the index + the value is larger or equal to the goal:
+                (beacuse if index + val can go to goal )
+                then update tje goal to i 
+        return if goal is zero or not (zero mean we reach the target)
+        """
+        goal = len(nums) - 1
+        for i in range(len(nums))[::-1]:
+            if i + nums[i] >= goal:
+                goal = i
+        return not goal
+        
