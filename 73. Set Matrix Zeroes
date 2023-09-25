@@ -1,0 +1,28 @@
+class Solution(object):
+    def setZeroes(self, matrix):
+        """
+
+        for loop all the elemnt if it is zero change the whole row and cols to 0
+        """
+        len_rows = len(matrix)
+        len_cols = len(matrix[0])
+        set_row = set()
+        set_col = set()
+
+        # Record the rows and columns that contain zeros
+        for r in range(len_rows):
+            for c in range(len_cols):
+                if matrix[r][c] == 0:
+                    set_row.add(r)
+                    set_col.add(c)
+
+        # Set the appropriate rows to zero
+        for r in set_row:
+            for c in range(len_cols):
+                matrix[r][c] = 0
+
+        # Set the appropriate columns to zero
+        for c in set_col:
+            for r in range(len_rows):
+                matrix[r][c] = 0
+        
