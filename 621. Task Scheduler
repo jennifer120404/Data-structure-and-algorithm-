@@ -1,0 +1,22 @@
+class Solution(object):
+    def leastInterval(self, tasks, n):
+        '''
+        import counter 
+        estabilsh the base case 
+        use the counter function to create a dictionary wioth value and the frequency of it 
+        calculate the max frequcy in the value of the dictionary 
+        count how many element have the max frequceny 
+        Calculate the result and return it 
+
+
+        '''
+        from collections import Counter
+        if n == 0:
+            return len(tasks)
+        task_count = Counter(tasks)
+        max_freq = max(task_count.values())
+        max_count = sum(1 for count in task_count.values() if count == max_freq)
+        result = max(len(tasks), (max_freq - 1) * (n + 1) + max_count)
+        return result
+
+        
