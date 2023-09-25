@@ -1,0 +1,32 @@
+import heapq
+
+class MedianFinder:
+    '''
+    so first we use two heap one to keep track of the half smaller part of the heap and the other keep track of the larger side of the heap ans pne as max heap for the smaller half
+
+    when a new number count:
+        if the the len of two heap is the same:
+            we push the nuew number to small heap and pop one number from 
+        else:
+            we push the number to large and pop the number form large and push it to small 
+
+    if need to find median:
+        if the len of small and large is the same:
+            return the float sum/ 2 of minimum element in self.large and the maximum element in self.small.
+
+    '''
+    def __init__(self):
+        self.small = []  
+        self.large = []  
+
+    def addNum(self, num):
+        if len(self.small) == len(self.large):
+            heappush(self.large, -heappushpop(self.small, -num))
+        else:
+            heappush(self.small, -heappushpop(self.large, num))
+
+    def findMedian(self):
+        if len(self.small) == len(self.large):
+            return float(self.large[0] - self.small[0]) / 2.0 # look miuns but is add due to small is a max heapo with negative val 
+        else:
+            return float(self.large[0])
