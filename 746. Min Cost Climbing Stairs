@@ -1,0 +1,16 @@
+class Solution(object):
+    def minCostClimbingStairs(self, cost):
+        """
+        Have a total variable to keep track of the total cost.
+        Add 0 to the end of the array because we need to get an element in the end of the array.
+
+        Loop in reverse order to compute the minimum cost to climb from each stair.
+            see which element is cheaper and add that to the cost 
+        return either the first or second element since we can start either first or second element 
+        """
+        cost.append(0)
+        for i in range(len(cost) - 3, -1, -1):
+            cost[i] += min(cost[i + 1], cost[i + 2])
+        return min(cost[0], cost[1])
+
+        
