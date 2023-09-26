@@ -1,0 +1,41 @@
+class Solution(object):
+    def longestPalindrome(self, s):
+        """
+        create a helper funtion to see if the string is palindromic
+
+        approch it front the middle and compare the left and right is the same 
+
+        have a result string and result len 
+        for loop i in the range of(s):
+            set l and r pointer as i 
+            have a while loop for odd length palindrome taht under bound and the both side letter is the same :
+                if the length is longer then update res and reslen
+            update l and r pointer 
+
+        repeat for Even length palindrome but intlize the l and r pointer differently 
+        retunr res 
+
+
+        """ 
+        res = ""
+        resLen = 0
+        for i in range(len(s)):
+            l, r = i, i
+            # Odd length palindrome
+            while l >= 0 and r < len(s) and s[l] == s[r]:
+                if (r - l + 1) > resLen:
+                    res = s[l:r+1]
+                    resLen = r - l + 1
+                l -= 1
+                r += 1
+            
+            l, r = i, i + 1
+            # Even length palindrome
+            while l >= 0 and r < len(s) and s[l] == s[r]:
+                if (r - l + 1) > resLen:
+                    res = s[l:r+1]
+                    resLen = r - l + 1
+                l -= 1
+                r += 1
+        
+        return res
