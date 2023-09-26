@@ -1,0 +1,27 @@
+class Solution(object):
+    def rob(self, nums):
+        '''
+        define edge case if there is no element return 0 and if length == 1 that return frist element else return the helper function result for two sub array 
+
+        create a helper function that take in an array 
+            define two var top keep track of new rob and old rob 
+            loop all the element in nums 
+                the new rob is the max of (new one + new , old rob)
+                then set rob1 as rob2 
+                and rob2 as new rob 
+            return the rob2 which is the new rob ? 
+
+        '''
+        if not nums:
+            return 0
+        if len(nums) == 1:
+            return nums[0]
+        return max(self.helper(nums[1:]), self.helper(nums[:-1]))
+
+    def helper(self, nums):
+        rob1, rob2 = 0, 0
+        for n in nums:
+            newR = max(rob1 + n, rob2)
+            rob1 = rob2
+            rob2 = newR
+        return rob2
