@@ -1,0 +1,34 @@
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def smallestFromLeaf(self, root):
+        """
+        create a list that store all the possible string 
+        do dfs that take in one node and a string 
+            if the root is empyth 
+                return notiong 
+            if left doent exist and right doesnt exist which mean the last node:
+                add the letter to the path and add the sting to the list   
+            call dfs on left and right and add the current letter to the the sting 
+        call dfs on root and empty string 
+        and sort the list 
+        returnthe first element which is also the smallest 
+
+        """
+        string_paths = []
+        def dfs(root, path):
+            if not root:
+                return
+            if root.left is None and root.right is None:
+                path+=chr(root.val + 97)
+                string_paths.append(path[::-1])
+                
+            dfs(root.left, path + chr(root.val + 97))
+            dfs(root.right, path + chr(root.val + 97))
+        dfs(root, "")
+        string_paths = sorted(string_paths)
+        return string_paths[0]
