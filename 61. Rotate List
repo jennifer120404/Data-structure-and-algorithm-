@@ -1,0 +1,39 @@
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution(object):
+    def rotateRight(self, head, k):
+        """
+        create base case on head if it is empty or next is empty and k is 0 
+        see how many rounf need to turn to be effective 
+        calculate the breakpoint that switch the reverse the location of the first half and second half
+        find the node to beak 
+        and reform the list return new head
+        
+        """
+        if not head or not head.next or k == 0:
+            return head
+        
+        length = 1
+        tail = head
+        while tail.next:
+            tail = tail.next
+            length += 1
+            
+        k = k % length
+        if k == 0:
+            return head
+
+        break_node = head
+        for i in range(length - k - 1):
+            break_node = break_node.next
+
+        new_head = break_node.next
+        break_node.next = None
+        tail.next = head
+        
+        return new_head
+            
+
