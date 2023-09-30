@@ -1,0 +1,42 @@
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution(object):
+    def deleteDuplicates(self, head):
+        ''''
+        if there is no head or only one nodeL
+            return juest the head 
+
+        create a dummy head 
+        set prev to dummy and curr to head 
+
+        while curr poiunter vaild: 
+                find the range of the duplicated nodes 
+                remove duplicates 
+
+        return dummy head
+
+        ''''
+        if not head or not head.next:
+            return head
+
+        dummy = ListNode(0)
+        dummy.next = head
+        prev = dummy
+        curr = head
+        
+        while curr:
+            while curr.next and curr.val == curr.next.val:
+                curr = curr.next
+
+            if prev.next != curr:
+                prev.next = curr.next
+            else:
+                prev = prev.next
+            curr = curr.next
+        
+        return dummy.next
+        
+        
