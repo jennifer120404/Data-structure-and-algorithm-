@@ -1,0 +1,42 @@
+class Solution(object):
+    def findMaxFish(self, grid):
+        '''
+        save the cols and rows of the grid
+
+        create a fuction that take in index of rows and cols 
+            check if the grid if vaild or not 
+            sett the fish count as the grid and marke the element 
+            go four ways 
+            return the fishcount else return 0
+        
+        ser max fishes to 0
+        travesse the r and c 
+            if the element have not been counted 
+                go in to recursive and calculate which one is larger 
+        return max fish
+
+        '''
+        m, n = len(grid), len(grid[0])
+
+        def catchFish(r, c):
+            if 0 <= r < m and 0 <= c < n and grid[r][c] > 0:
+                fish_count = grid[r][c]
+                grid[r][c] = 0  
+                fish_count += catchFish(r+1, c)
+                fish_count += catchFish(r-1, c)
+                fish_count += catchFish(r, c+1)
+                fish_count += catchFish(r, c-1)
+                return fish_count
+            return 0
+
+        max_fishes = 0
+        for r in range(m):
+            for c in range(n):
+                if grid[r][c] > 0:
+                    max_fishes = max(max_fishes, catchFish(r, c))
+
+        return max_fishes
+
+
+
+
