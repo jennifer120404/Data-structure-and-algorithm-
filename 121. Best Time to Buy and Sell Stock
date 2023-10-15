@@ -1,0 +1,26 @@
+class Solution(object):
+    def maxProfit(self, prices):
+        '''
+        create left and right pointer 
+        set a val to max_profit 
+        while right pointer is less that len of price 
+            set total to right -left 
+            if the right pointer is more than left pointer:
+                update the max progit if needed
+            else that mean that left is more than right 
+                update the left pointer to right 
+            increse right pointer 
+        
+        return max_profit 
+        '''
+        left = 0
+        right = 1
+        max_profit = 0 
+        while right < len(prices):
+            total = prices[right] - prices[left]
+            if prices[right] > prices[left]:
+                max_profit = max( total,max_profit )
+            else:
+                left = right 
+            right += 1
+        return max_profit 
