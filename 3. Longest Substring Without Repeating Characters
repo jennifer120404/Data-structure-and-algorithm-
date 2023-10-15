@@ -1,0 +1,26 @@
+class Solution(object):
+    def lengthOfLongestSubstring(self, s):
+        """
+        create a set that keep track of all the charater in the string 
+        have a max length val 
+        set a left pointer 
+        for loop every chara as right pointer:
+                while the right pointer charater in the string that mean no substring 
+                so the left pointer keep move forwrd and remove the left pointer letter 
+                add the right letter to the set 
+                update the max length 
+        return the max_length 
+        """
+        char_set = set()
+        max_length = 0
+        left = 0
+
+        for right in range(len(s)):
+            while s[right] in char_set:
+                char_set.remove(s[left])
+                left += 1
+
+            char_set.add(s[right])
+            max_length = max(max_length, right - left + 1)
+
+        return max_length
