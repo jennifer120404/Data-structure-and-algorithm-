@@ -1,0 +1,39 @@
+class Solution(object):
+    def generateParenthesis(self, n):
+        '''
+        Have a stack and res list 
+
+        create a backtracking that take in the number of opening and closing:
+            if open and closed number is the same:
+                append the stack to the res 
+                and return 
+            if number of open sign is less than number of pairs
+                add a opening to the stack 
+                go for the backtracking that add a +1 to opening 
+                pop the stack 
+            if the opening > closing:
+                append a closing sign 
+                add closing num +1 
+                stack pop 
+            
+            run backtracking on 0,0 
+            return the result 
+        '''
+        stack = []
+        res = []
+
+        def backtrack(openN, closedN):
+            if openN == closedN == n:
+                res.append("".join(stack))
+                return
+            if openN < n:
+                stack.append("(")
+                backtrack(openN + 1, closedN)
+                stack.pop()
+            if closedN < openN:
+                stack.append(")")
+                backtrack(openN, closedN + 1)
+                stack.pop()
+
+        backtrack(0, 0)
+        return res
