@@ -1,0 +1,24 @@
+class Solution(object):
+    def dailyTemperatures(self, temperatures):
+        """
+        create a result list with len of the list to save result 
+        create a stack
+        loop the index and val in temperatures 
+            while stack is not empyt and the val is larger that the last element of the stack 
+            pop the index of the last element
+            add the result ot the the res witht ht eindex that just pop 
+            add the index of the current elemtn to the stack 
+
+        return res 
+
+        """
+        res = [0] * len(temperatures) 
+        stack = []  
+        for i, temp in enumerate(temperatures):
+
+            while stack and temp > temperatures[stack[-1]]:
+                j = stack.pop() 
+                res[j] = i - j  
+            stack.append(i) 
+        
+        return res 
