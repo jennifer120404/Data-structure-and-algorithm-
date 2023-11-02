@@ -1,0 +1,39 @@
+class Solution(object):
+    def convert(self, s, numRows):
+        '''
+        base case if numRows is 1:
+            return the string 
+
+        crete a matrx based on rthe numRows
+        create index var 
+        create a step that indicate the direction 
+
+        for loop all the charater in the string:
+            add the charater to the current index:
+            if we reach to the top 
+                step is set to 1 going down 
+            if we reach to the bottom 
+                step is set to -1 going up
+            change index based on step 
+        add all the word together and return 
+
+        runtime 
+        one for loop that go thoight all the charater in string O(n)
+        '''
+        if numRows == 1 or numRows >= len(s):
+            return s
+        
+        rows = [[] for row in range(numRows)]
+        index = 0
+        step = -1
+        for char in s:
+            rows[index].append(char)
+            if index == 0:
+                step = 1
+            elif index == numRows - 1:
+                step = -1
+            index += step
+
+        for i in range(numRows):
+            rows[i] = ''.join(rows[i])
+        return ''.join(rows)
