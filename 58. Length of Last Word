@@ -1,0 +1,47 @@
+class Solution(object):
+    def lengthOfLastWord(self, s):
+        '''
+        have a list of word
+        and the string to keep the word that we are on rn 
+
+        loop all letter in the string 
+            if it is a space and there is no word 
+                continue 
+            if it is a space and there is word 
+                append the word and reset 
+            if it is a letter 
+                append it to the word 
+
+            if there is a word in the end 
+                append the word 
+            
+            if string is not empyth:
+                return the len of the last word
+            else 
+            return 0 
+
+            Runtime: 
+            a loop O(n)
+            append O(1) since only adding from the end 
+            final: O(n)
+
+        '''
+        words = []
+        word = ""
+        for n in s: 
+            if n == " " and word == "": 
+                continue
+            elif n == " " and word != "":
+                words.append(word)
+                word = ""
+            elif n != " ":
+                word += n
+        
+        if word:
+            words.append(word)
+
+
+        if words:
+            return len(words[-1])
+        else:
+            return 0
