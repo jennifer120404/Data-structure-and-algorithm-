@@ -1,0 +1,32 @@
+class Solution(object):
+    def isIsomorphic(self, s, t):
+        """
+        creat a dictionary 
+        have create a set that record all the charater than have vitisted 
+        and n is keep track of the index 
+
+        while n is larger than 0:
+                if the letter is in the mapping but it does not mtach:
+                        return false 
+                if it is not in mapping and the letter is vitisted:
+                        return false 
+                add the letter to the visited
+                and set a new pair in the dictionary 
+                move the index back 
+
+        all pass then return true 
+        """
+        mapping = {}
+        char_set = set()
+        n = len(s) - 1
+
+        while n >= 0:
+            if s[n] in mapping and mapping[s[n]] != t[n]:
+                return False
+            if s[n] not in mapping and t[n] in char_set:
+                return False
+            char_set.add(t[n])
+            mapping[s[n]] = t[n]
+            n -= 1
+
+        return True
