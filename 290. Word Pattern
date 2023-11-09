@@ -1,0 +1,29 @@
+class Solution(object):
+    def wordPattern(self, pattern, s):
+        """
+        spilt the s to char 
+        if the pattern size and the len of char is not the same return false 
+        have a dictionary 
+        and run the thing in patterna nd char 
+            if the pattern is alraedy in the dic and the char does not match 
+                return flase 
+            else set the pateern to current char 
+        if the len of unique dic's value and key is not same 
+            return false 
+        return True 
+            
+        """
+        char = s.split()
+        patternSize = len(pattern)
+        lenChar = len(char)
+        if patternSize!=lenChar:
+            return False
+        dic = {}
+        for i,j in zip(pattern,char):
+            if (i in dic and j!=dic[i]):
+                return False
+            dic[i] = j
+            if len(set(dic.values()))!=len(set(dic.keys())):
+                return False
+        return True
+        
