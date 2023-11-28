@@ -1,0 +1,30 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    '''
+    use recurvise function that take in the root and the last sum 
+        if root is empty return 0 
+        set past numbver as past_num * 10 + root.val
+        if there is noleft and right child return pas number 
+        else 
+            return edd left and right recursive 
+
+        call the recurise 
+        '''
+    def add(self, root, past_num):
+        if not root:
+            return 0
+        
+        past_num = past_num * 10 + root.val
+        
+        if not root.left and not root.right:
+            return past_num
+        else:
+            return self.add(root.left, past_num) + self.add(root.right, past_num)
+
+    def sumNumbers(self, root: Optional[TreeNode]) -> int:
+        return self.add(root, 0)
