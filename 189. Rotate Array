@@ -1,0 +1,12 @@
+class Solution:
+    def rotate(self, nums: List[int], k: int) -> None:
+        """
+        check if there is extra swap 
+        if the swap is 1 or 0 then return orignal list 
+        else roate 
+        """
+        if k >= len(nums):
+            k = k%len(nums)
+        if len(nums)==1 or k == 0:
+            return nums
+        nums[:k], nums[k:] = nums[-k:], nums[:-k]
